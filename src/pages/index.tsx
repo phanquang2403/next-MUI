@@ -1,6 +1,5 @@
-import Image from "next/image";
+import { Adminlayout } from "@/components/layouts";
 import { Inter } from "next/font/google";
-import { Mainlayout } from "@/components/layouts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,6 +9,6 @@ const PageHome = (props: Props) => {
   return <div>home about</div>;
 };
 
-PageHome.Layout = Mainlayout;
+PageHome.Layout = Adminlayout;
 
 export default PageHome;
