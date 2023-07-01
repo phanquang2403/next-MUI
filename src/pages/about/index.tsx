@@ -1,4 +1,4 @@
-import { Mainlayout } from "@/components";
+import { Mainlayout } from "@/components/layouts";
 import React from "react";
 
 type Props = {};
