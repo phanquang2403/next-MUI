@@ -13,6 +13,7 @@
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
+    "cookies": "^0.8.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.7",
     "http-proxy": "^1.18.1",
@@ -24,6 +25,8 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@types/cookie": "^0.5.1",
+    "@types/cookies": "^0.7.7",
     "@types/http-proxy": "^1.17.11"
   }
 }
