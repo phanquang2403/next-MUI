@@ -31,21 +31,6 @@ export function Mainlayout({ children }: LayoutProps) {
         >
           MD
         </Container>
-        <Link href="/" className="text-red-500">
-          Home
-        </Link>
-
-        <Link href="/about" className="text-red-500">
-          About
-        </Link>
-
-        <Link href="/works" className="text-red-500">
-          Works
-        </Link>
-
-        <Link href="/blog" className="text-red-500">
-          Blog
-        </Link>
 
         {children}
       </Box>

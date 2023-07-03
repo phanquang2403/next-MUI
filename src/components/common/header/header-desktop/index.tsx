@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { Box, Container, Stack, Link as MuiLink } from "@mui/material";
+import {
+  Box,
+  Container,
+  Stack,
+  Link as MuiLink,
+  Typography,
+} from "@mui/material";
 import { ROUTES } from "../routes";
 import { useRouter } from "next/router";
 import clsx from "clsx";
@@ -18,14 +24,22 @@ export function HeaderDesktop() {
         <Stack direction={"row"} justifyContent={"flex-end"}>
           {ROUTES.map((route) => (
             <Link key={route.path} href={route.path} passHref>
-              {/* <p className="ml-2 text-green-600">{route.label}</p> */}
+              {/* <p className={clsx({ active: router.pathname === route.path })}>
+                {route.label}
+              </p> */}
 
-              <MuiLink
+              <Typography
+                className={clsx({ active: router.pathname === route.path })}
+              >
+                {route.label}
+              </Typography>
+
+              {/* <MuiLink
                 sx={{ ml: 2 }}
                 className={clsx({ active: router.pathname === route.path })}
               >
                 {route.label}
-              </MuiLink>
+              </MuiLink> */}
             </Link>
           ))}
         </Stack>

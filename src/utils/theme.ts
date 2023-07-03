@@ -52,7 +52,7 @@ export const theme = createTheme({
         root: {
           color: "red",
           "&:hover, &.active": {
-            color: "yellow",
+            color: "blue",
           },
         },
       },
@@ -60,6 +60,38 @@ export const theme = createTheme({
         underline: "hover",
       },
       variants: [],
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          color: "#333",
+          "&.active": {
+            color: "blue",
+          },
+        },
+      },
+      defaultProps: {},
+      variants: [],
+    },
+
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: "red",
+        },
+      },
+      defaultProps: {
+        color: "secondary",
+      },
+      variants: [
+        {
+          props: {},
+          style: {
+            background: "green !important",
+            color: "white",
+          },
+        },
+      ],
     },
   },
 });

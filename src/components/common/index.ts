@@ -1,3 +1,3 @@
 export * from "./auth";
-export * from "./header/header";
+export * from "./header";
 export * from "./footer";
