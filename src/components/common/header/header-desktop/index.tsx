@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { Box, Container, Stack, Link as MuiLink } from "@mui/material";
 import { ROUTES } from "../routes";
+import { useRouter } from "next/router";
+import clsx from "clsx";
 
 export function HeaderDesktop() {
+  const router = useRouter();
   return (
     <Box
       py={2}
@@ -17,7 +20,12 @@ export function HeaderDesktop() {
             <Link key={route.path} href={route.path} passHref>
               {/* <p className="ml-2 text-green-600">{route.label}</p> */}
 
-              <MuiLink sx={{ ml: 2 }}>{route.label}</MuiLink>
+              <MuiLink
+                sx={{ ml: 2 }}
+                className={clsx({ active: router.pathname === route.path })}
+              >
+                {route.label}
+              </MuiLink>
             </Link>
           ))}
         </Stack>

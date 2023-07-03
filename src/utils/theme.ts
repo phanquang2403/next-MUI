@@ -49,12 +49,12 @@ export const theme = createTheme({
     },
     MuiLink: {
       styleOverrides: {
-        // root: {
-        //   // color: "red",
-        //   // "&:hover": {
-        //   //   color: "yellow",
-        //   // },
-        // },
+        root: {
+          color: "red",
+          "&:hover, &.active": {
+            color: "yellow",
+          },
+        },
       },
       defaultProps: {
         underline: "hover",
