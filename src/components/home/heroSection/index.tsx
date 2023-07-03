@@ -6,7 +6,12 @@ export function HeroSection() {
   return (
     <Box component="section">
       <Container>
-        <Stack direction="row" alignItems="flex-start">
+        <Stack
+          direction={{ sx: "column-reverse", md: "row" }}
+          alignItems={{ sx: "center", md: "flex-start" }}
+          textAlign={{ sx: "center", md: "left" }}
+          spacing={8}
+        >
           <Box>
             <Typography>
               Hi, I am John <br />
