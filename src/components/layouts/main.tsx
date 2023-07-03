@@ -1,5 +1,5 @@
 import { LayoutProps } from "@/models";
-import { Box, Stack } from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { Footer, Header } from "../common";
@@ -15,6 +15,22 @@ export function Mainlayout({ children }: LayoutProps) {
       <Header />
 
       <Box component={"main"}>
+        <Container
+          maxWidth="sm"
+          sx={{
+            bgcolor: "primary.main",
+          }}
+        >
+          SM
+        </Container>
+
+        <Container
+          sx={{
+            bgcolor: "primary.main",
+          }}
+        >
+          MD
+        </Container>
         <Link href="/" className="text-red-500">
           Home
         </Link>
