@@ -1,14 +1,23 @@
 import { GetStaticProps } from "next";
 import { Mainlayout } from "@/components/layouts";
 import { getPostList } from "@/utils/post";
+import { Post } from "@/models";
 
 export interface BlogListPageProps {
-  posts: any;
+  posts: Post[];
 }
-export default function PostLayout() {
+export default function PostLayout({ posts }: BlogListPageProps) {
   return (
     <div>
       <div>post</div>
+
+      <ul>
+        {posts.map((item: Post, id: number) => (
+          <li key={id}>
+            <a href={`/posts/${item?.id}`}>{item?.title}</a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -19,11 +28,10 @@ PostLayout.Layout = Mainlayout;
 
 export const getStaticProps: GetStaticProps<BlogListPageProps> = async () => {
   // convert mardown file (.md) into list javascript object
-  const data = await getPostList();
-
+  const postList = await getPostList();
   return {
     props: {
-      posts: data.map((x: any) => ({ id: x.id, title: x.title })),
+      posts: postList || [],
     },
   };
 };
