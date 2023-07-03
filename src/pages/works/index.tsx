@@ -1,14 +1,14 @@
-import { Adminlayout, Mainlayout } from "@/components/layouts";
+import { Mainlayout } from "@/components/layouts";
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
 type Props = {};
 
-const PageAbout = (props: Props) => {
+const WorksPage = (props: Props) => {
   return (
     <Box>
       <Typography component={"h1"} variant="h3" color={"primary.main"}>
-        <div>page about</div>
+        <div>WorksPage</div>
       </Typography>
 
       <Button>Submit</Button>
@@ -16,6 +16,6 @@ const PageAbout = (props: Props) => {
   );
 };
 
-PageAbout.Layout = Mainlayout;
+WorksPage.Layout = Mainlayout;
 
-export default PageAbout;
+export default WorksPage;
