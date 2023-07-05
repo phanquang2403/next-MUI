@@ -6,6 +6,12 @@ export const ROUTES = [
   {
     label: "Work",
     path: "/works",
+    isRequired: true,
+  },
+  {
+    label: "About",
+    path: "/about",
+    isRequired: true,
   },
   {
     label: "Blog",

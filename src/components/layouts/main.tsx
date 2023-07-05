@@ -11,12 +11,12 @@ export function Mainlayout({ children }: LayoutProps) {
   // }, []);
 
   return (
-    <Auth>
-      <Stack minHeight={"100vh"}>
-        <Header />
+    // <Auth> // bảo vệ layout cần đăng nhập
+    <Stack minHeight={"100vh"}>
+      <Header />
 
-        <Box component={"main"}>
-          <Container
+      <Box component={"main"}>
+        {/* <Container
             maxWidth="sm"
             sx={{
               bgcolor: "primary.main",
@@ -31,13 +31,14 @@ export function Mainlayout({ children }: LayoutProps) {
             }}
           >
             MD
-          </Container>
+          </Container> */}
 
-          {children}
-        </Box>
+        {children}
+      </Box>
 
-        <Footer />
-      </Stack>
-    </Auth>
+      <Footer />
+    </Stack>
+
+    // </Auth>
   );
 }

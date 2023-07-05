@@ -37,8 +37,8 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
     formState: { isSubmitting },
   } = useForm<LoginPayload>({
     defaultValues: {
-      username: undefined,
-      password: undefined,
+      username: "",
+      password: "",
     },
     resolver: yupResolver(schema),
   });
