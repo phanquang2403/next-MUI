@@ -28,7 +28,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
+    <div className="m-4">
       <h1>Login page</h1>
 
       <button onClick={handleLogin} className="border border-solid px-4 py-2">
