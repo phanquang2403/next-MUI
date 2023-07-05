@@ -9,7 +9,8 @@ import { CssBaseline } from "@mui/material";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { SWRConfig } from "swr";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
@@ -37,6 +38,7 @@ export default function MyAppProps({
           <Layout>
             <Component {...pageProps} />;
           </Layout>
+          <ToastContainer autoClose={3000} />
         </SWRConfig>
       </ThemeProvider>
     </CacheProvider>

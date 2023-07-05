@@ -3,6 +3,7 @@ import { LoginForm } from "@/components/auth";
 import { useAuth } from "@/hooks";
 import { LoginPayload } from "@/models";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function LoginPage() {
   const handleLogin = async (payload: LoginPayload) => {
     try {
       await login(payload);
+      toast.success("Đăng nhập thành công, đang chuyển hướng...");
       router.push("/about");
     } catch (error) {
       console.log("failed to login", error);
