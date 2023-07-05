@@ -5,17 +5,32 @@ import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { LoginPayload } from "@/models";
-
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 interface LoginFormProps {
   onSubmit: (payload: LoginPayload) => void;
 }
 
 export function LoginForm({ onSubmit }: LoginFormProps) {
+  const schema = yup
+    .object({
+      username: yup
+        .string()
+        .required("Please enter username")
+        .min(4, "Username is required to have at least 4 character"),
+      password: yup
+        .string()
+        .required("Please enter password")
+        .min(6, "Username is required to have at least 6 character"),
+    })
+    .required();
+
   const { control, handleSubmit } = useForm<LoginPayload>({
     defaultValues: {
       username: "",
       password: "",
     },
+    resolver: yupResolver(schema),
   });
 
   const handleLoginSubmit = (payload: LoginPayload) => {

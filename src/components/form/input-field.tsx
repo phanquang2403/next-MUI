@@ -22,6 +22,7 @@ export function InputField({
     name,
     control,
   });
+
   return (
     <TextField
       fullWidth
@@ -31,6 +32,8 @@ export function InputField({
       value={value}
       inputRef={ref}
       onChange={onChange}
+      error={!!error}
+      helperText={error?.message}
       {...props}
     />
   );
