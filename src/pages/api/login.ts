@@ -35,9 +35,19 @@ export default function handler(
 
       proxyRes.on("end", function () {
         try {
+          // nếu login faild
+          const isSuccess =
+            (proxyRes.statusCode || 0) >= 200 &&
+            (proxyRes.statusCode || 0) <= 300;
+
+          if (!isSuccess) {
+            (res as NextApiResponse)
+              .status(proxyRes.statusCode || 500)
+              .json({ error: true, message: body });
+            return resolve();
+          }
+
           const { accessToken, expiredAt } = JSON.parse(body);
-          console.log("accessToken", accessToken);
-          console.log("expiredAt", expiredAt);
           // convert  token to cookie
           const cookies = new Cookies(req, res, {
             secure: process.env.NODE_ENV !== "development",

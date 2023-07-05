@@ -4,21 +4,25 @@ import { InputField } from "../form/input-field";
 import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { LoginPayload } from "@/models";
 
-export function LoginForm() {
-  const { control, handleSubmit } = useForm({
+interface LoginFormProps {
+  onSubmit: (payload: LoginPayload) => void;
+}
+
+export function LoginForm({ onSubmit }: LoginFormProps) {
+  const { control, handleSubmit } = useForm<LoginPayload>({
     defaultValues: {
       username: "",
       password: "",
     },
   });
 
-  const handleLoginSubmit = (values: any) => {
-    console.log("values", values);
+  const handleLoginSubmit = (payload: LoginPayload) => {
+    onSubmit?.(payload);
   };
 
   const [showPassword, setShowPassword] = useState(false);
-  console.log("showPassword", showPassword);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (

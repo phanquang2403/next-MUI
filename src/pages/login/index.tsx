@@ -1,6 +1,7 @@
 import { authApi } from "@/api-client";
 import { LoginForm } from "@/components/auth";
 import { useAuth } from "@/hooks";
+import { LoginPayload } from "@/models";
 import { useRouter } from "next/router";
 
 export default function LoginPage() {
@@ -9,9 +10,9 @@ export default function LoginPage() {
     revalidateOnMount: false, // mới vào trang login k muốn call api get profile
   });
 
-  const handleLogin = async () => {
+  const handleLogin = async (payload: LoginPayload) => {
     try {
-      await login();
+      await login(payload);
       router.push("/about");
     } catch (error) {
       console.log("failed to login", error);
@@ -31,9 +32,6 @@ export default function LoginPage() {
     <div className="m-4">
       <h1>Login page</h1>
 
-      <button onClick={handleLogin} className="border border-solid px-4 py-2">
-        Login
-      </button>
       <p>{JSON.stringify(profile ?? {}, null, 4)}</p>
 
       <button onClick={handleLogout} className="border border-solid px-4 py-2">
@@ -46,7 +44,8 @@ export default function LoginPage() {
       >
         about
       </button>
-      <LoginForm />
+
+      <LoginForm onSubmit={handleLogin} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { PublicConfiguration } from "swr/_internal";
 import useSWR from "swr";
 import { authApi } from "@/api-client";
+import { LoginPayload } from "@/models";
 
 export function useAuth(options?: Partial<PublicConfiguration>) {
   const {
@@ -15,12 +16,10 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
 
   const firstLoading = profile === undefined && error === undefined;
 
-  console.log({ profile, error });
-
-  const login = async () => {
+  const login = async (payload: LoginPayload) => {
     await authApi.login({
-      username: "test1",
-      password: "123456",
+      username: payload.username,
+      password: payload.password,
     });
     await mutate(); //trigger API update data
   };
