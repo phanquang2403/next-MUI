@@ -1,14 +1,15 @@
 import { PublicConfiguration } from "swr/_internal";
 import useSWR from "swr";
 import { authApi } from "@/api-client";
-import { LoginPayload } from "@/models";
+import { LoginPayload, UserProfile } from "@/models";
+import React from "react";
 
 export function useAuth(options?: Partial<PublicConfiguration>) {
   const {
     data: profile,
     error,
     mutate,
-  } = useSWR("/profile", {
+  } = useSWR<UserProfile | null, unknown, any>("/profile", {
     dedupingInterval: 60 * 60 * 1000, //1h
     revalidateOnFocus: false,
     ...options,
