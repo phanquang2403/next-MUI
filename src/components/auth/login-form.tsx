@@ -27,8 +27,8 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
 
   const { control, handleSubmit } = useForm<LoginPayload>({
     defaultValues: {
-      username: "",
-      password: "",
+      username: undefined,
+      password: undefined,
     },
     resolver: yupResolver(schema),
   });
@@ -52,7 +52,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
       <InputField
         name="password"
         control={control}
-        label={"Username"}
+        label={"Password"}
         type={showPassword ? "text" : "password"}
         InputProps={{
           endAdornment: (

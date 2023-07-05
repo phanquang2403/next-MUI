@@ -2,7 +2,7 @@ import { LayoutProps } from "@/models";
 import { Box, Container, Stack } from "@mui/material";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { Footer, Header } from "../common";
+import { Auth, Footer, Header } from "../common";
 
 export function Mainlayout({ children }: LayoutProps) {
   // useEffect(() => {
@@ -11,31 +11,33 @@ export function Mainlayout({ children }: LayoutProps) {
   // }, []);
 
   return (
-    <Stack minHeight={"100vh"}>
-      <Header />
+    <Auth>
+      <Stack minHeight={"100vh"}>
+        <Header />
 
-      <Box component={"main"}>
-        <Container
-          maxWidth="sm"
-          sx={{
-            bgcolor: "primary.main",
-          }}
-        >
-          SM
-        </Container>
+        <Box component={"main"}>
+          <Container
+            maxWidth="sm"
+            sx={{
+              bgcolor: "primary.main",
+            }}
+          >
+            SM
+          </Container>
 
-        <Container
-          sx={{
-            bgcolor: "primary.main",
-          }}
-        >
-          MD
-        </Container>
+          <Container
+            sx={{
+              bgcolor: "primary.main",
+            }}
+          >
+            MD
+          </Container>
 
-        {children}
-      </Box>
+          {children}
+        </Box>
 
-      <Footer />
-    </Stack>
+        <Footer />
+      </Stack>
+    </Auth>
   );
 }
