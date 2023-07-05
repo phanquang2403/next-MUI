@@ -51,16 +51,3 @@ export default function LoginPage() {
     </Box>
   );
 }
-
-// <p>{JSON.stringify(profile ?? {}, null, 4)}</p>
-
-// <button onClick={handleLogout} className="border border-solid px-4 py-2">
-//   Logout
-// </button>
-
-// <button
-//   onClick={() => router.push("/about")}
-//   className="border border-solid px-4 py-2"
-// >
-//   about
-// </button>

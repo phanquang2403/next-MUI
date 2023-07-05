@@ -5,6 +5,6 @@ export interface LoginPayload {
 
 export interface UserProfile {
   username: string;
-  city: string;
-  email: string;
+  city?: string;
+  email?: string;
 }

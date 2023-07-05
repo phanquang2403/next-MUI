@@ -1,8 +1,6 @@
 import { LayoutProps } from "@/models";
-import { Box, Container, Stack } from "@mui/material";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { Auth, Footer, Header } from "../common";
+import { Box, Stack } from "@mui/material";
+import { Footer, Header } from "../common";
 
 export function Mainlayout({ children }: LayoutProps) {
   // useEffect(() => {
