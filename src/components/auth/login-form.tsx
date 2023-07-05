@@ -47,17 +47,12 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
   };
 
   return (
-    <Box
-      component={"form"}
-      onSubmit={handleSubmit(handleLoginSubmit)}
-      sx={{
-        maxWidth: "240px",
-      }}
-    >
-      <InputField name="username" control={control} />
+    <Box component={"form"} onSubmit={handleSubmit(handleLoginSubmit)}>
+      <InputField name="username" control={control} label={"Username"} />
       <InputField
         name="password"
         control={control}
+        label={"Username"}
         type={showPassword ? "text" : "password"}
         InputProps={{
           endAdornment: (
@@ -73,7 +68,9 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
           ),
         }}
       />
-      <Button type="submit">login</Button>
+      <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
+        login
+      </Button>
     </Box>
   );
 }

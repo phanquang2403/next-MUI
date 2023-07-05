@@ -2,6 +2,7 @@ import { authApi } from "@/api-client";
 import { LoginForm } from "@/components/auth";
 import { useAuth } from "@/hooks";
 import { LoginPayload } from "@/models";
+import { Box, Paper, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
@@ -15,7 +16,7 @@ export default function LoginPage() {
     try {
       await login(payload);
       toast.success("Đăng nhập thành công, đang chuyển hướng...");
-      router.push("/about");
+      router.push("/");
     } catch (error) {
       console.log("failed to login", error);
     }
@@ -31,23 +32,35 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="m-4">
-      <h1>Login page</h1>
-
-      <p>{JSON.stringify(profile ?? {}, null, 4)}</p>
-
-      <button onClick={handleLogout} className="border border-solid px-4 py-2">
-        Logout
-      </button>
-
-      <button
-        onClick={() => router.push("/about")}
-        className="border border-solid px-4 py-2"
+    <Box className="m-4">
+      <Paper
+        elevation={4}
+        sx={{
+          mt: 8,
+          p: 4,
+          maxWidth: "480px",
+          mx: "auto",
+          textAlign: "center",
+        }}
       >
-        about
-      </button>
-
-      <LoginForm onSubmit={handleLogin} />
-    </div>
+        <Typography component={"h1"} variant="h5">
+          Login Page
+        </Typography>
+        <LoginForm onSubmit={handleLogin} />
+      </Paper>
+    </Box>
   );
 }
+
+// <p>{JSON.stringify(profile ?? {}, null, 4)}</p>
+
+// <button onClick={handleLogout} className="border border-solid px-4 py-2">
+//   Logout
+// </button>
+
+// <button
+//   onClick={() => router.push("/about")}
+//   className="border border-solid px-4 py-2"
+// >
+//   about
+// </button>

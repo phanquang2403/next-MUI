@@ -16,6 +16,7 @@ export default function handler(
   res: NextApiResponse<any>
 ) {
   return new Promise<void>((resolve) => {
+    console.log("_____");
     //convert cookie to header Authorization
     const cookie = new Cookies(req, res);
     const accessToken = cookie.get("access_token");
