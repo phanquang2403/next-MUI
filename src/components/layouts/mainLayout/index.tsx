@@ -1,6 +1,9 @@
 import { LayoutProps } from "@/models";
 import { Box, Stack } from "@mui/material";
-import { Footer, Header } from "../common";
+import dynamic from "next/dynamic";
+import { Footer } from "./footer";
+
+const Header = dynamic(() => import("./header"), { ssr: false });
 
 export function Mainlayout({ children }: LayoutProps) {
   // useEffect(() => {
@@ -21,7 +24,6 @@ export function Mainlayout({ children }: LayoutProps) {
             }}
           >
             SM
-          </Container>
 
           <Container
             sx={{

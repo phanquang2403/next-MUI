@@ -6,17 +6,22 @@ import {
   Link as MuiLink,
   Typography,
 } from "@mui/material";
-import { ROUTES } from "../routes";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 import { useAuth } from "@/hooks";
-
+import { useEffect, useMemo, useState } from "react";
+import { ROUTES } from "../contants/routes";
 export function HeaderDesktop() {
   const router = useRouter();
   const { profile, logout } = useAuth();
 
   const isLogger = Boolean(profile?.username);
-  const routeByAuth = ROUTES.filter((rou) => !rou.isRequired || isLogger);
+
+  const routerList = useMemo(
+    () => ROUTES.filter((item) => !item.isRequired || isLogger),
+    [isLogger]
+  );
+
   return (
     <Box
       py={2}
@@ -26,7 +31,7 @@ export function HeaderDesktop() {
     >
       <Container>
         <Stack direction={"row"} justifyContent={"flex-end"}>
-          {routeByAuth.map((route) => (
+          {routerList.map((route) => (
             <Link key={route.path} href={route.path} passHref>
               <MuiLink
                 component={"p"}

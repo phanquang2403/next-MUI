@@ -1,7 +1,7 @@
 import { LayoutProps } from "@/models";
 import Link from "next/link";
 import React from "react";
-import { Auth } from "../common";
+import { Auth } from "../../common";
 import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
 

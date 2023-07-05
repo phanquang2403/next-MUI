@@ -4,7 +4,7 @@ export interface LoginPayload {
 }
 
 export interface UserProfile {
+  city: string;
+  email: string;
   username: string;
-  city?: string;
-  email?: string;
 }

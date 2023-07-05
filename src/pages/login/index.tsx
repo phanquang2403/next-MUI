@@ -1,4 +1,3 @@
-import { authApi } from "@/api-client";
 import { LoginForm } from "@/components/auth";
 import { useAuth } from "@/hooks";
 import { LoginPayload } from "@/models";
@@ -19,15 +18,6 @@ export default function LoginPage() {
       router.push("/");
     } catch (error) {
       console.log("failed to login", error);
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      router.push("/login");
-    } catch (error) {
-      console.log("failed to logout", error);
     }
   };
 
