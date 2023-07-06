@@ -1,9 +1,7 @@
-import { SWRConfiguration } from "swr";
-import useSWR from "swr";
 import { authApi } from "@/api-client";
 import { LoginPayload, UserProfile } from "@/models";
-import React from "react";
 import { STORAGE_KEY, jsonParse } from "@/utils/contants";
+import useSWR, { SWRConfiguration } from "swr";
 import { useLocalStorage } from "./useLocalStorage";
 
 export function useAuth(options?: Partial<SWRConfiguration>) {
@@ -27,8 +25,6 @@ export function useAuth(options?: Partial<SWRConfiguration>) {
       logout();
     },
   });
-
-  console.log("profile", profile);
 
   const firstLoading = profile === undefined && error === undefined;
 
