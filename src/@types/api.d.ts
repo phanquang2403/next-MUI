@@ -2,7 +2,7 @@ declare namespace API {
   interface IPagination {
     _page: number;
     _limit: number;
-    _total: number;
+    _totalRows: number;
   }
 
   interface IListResponse<T> {

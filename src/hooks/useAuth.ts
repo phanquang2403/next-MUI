@@ -11,9 +11,9 @@ export function useAuth(options?: Partial<SWRConfiguration>) {
     error,
     mutate,
   } = useSWR<Auth.UserProfile | null>("/profile", {
-    dedupingInterval: 60 * 60 * 1000, //1h
+    dedupingInterval: 60 * 60 * 1000, //thời dan call lại api mơi
     revalidateOnFocus: false,
-    fallbackData: jsonParse<Auth.UserProfile>(getItem(STORAGE_KEY.USER_INFO)),
+    fallbackData: jsonParse<Auth.UserProfile>(getItem(STORAGE_KEY.USER_INFO)), // lấy giá trị khỏi tạo ban đầu
     ...options,
     onSuccess(data: any) {
       // save info to localStorage
