@@ -10,11 +10,10 @@ import { InputField } from "../form/input-field";
 import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { LoginPayload } from "@/models";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 interface LoginFormProps {
-  onSubmit: (payload: LoginPayload) => void;
+  onSubmit: (payload: Auth.LoginPayload) => void;
 }
 
 export function LoginForm({ onSubmit }: LoginFormProps) {
@@ -35,7 +34,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
     control,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<LoginPayload>({
+  } = useForm<Auth.LoginPayload>({
     defaultValues: {
       username: "",
       password: "",
@@ -43,7 +42,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
     resolver: yupResolver(schema),
   });
 
-  const handleLoginSubmit = async (payload: LoginPayload) => {
+  const handleLoginSubmit = async (payload: Auth.LoginPayload) => {
     await onSubmit?.(payload);
   };
 

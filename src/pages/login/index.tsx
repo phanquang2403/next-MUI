@@ -1,6 +1,5 @@
 import { LoginForm } from "@/components/auth";
 import { useAuth } from "@/hooks";
-import { LoginPayload } from "@/models";
 import { getErrorMessage } from "@/utils";
 import { Box, Paper, Typography } from "@mui/material";
 import { useRouter } from "next/router";
@@ -12,7 +11,7 @@ export default function LoginPage() {
     revalidateOnMount: false, // mới vào trang login k muốn call api get profile
   });
 
-  const handleLogin = async (payload: LoginPayload) => {
+  const handleLogin = async (payload: Auth.LoginPayload) => {
     try {
       await login(payload);
       toast.success("Đăng nhập thành công, đang chuyển hướng...");

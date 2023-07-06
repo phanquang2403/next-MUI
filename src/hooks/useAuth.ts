@@ -1,5 +1,4 @@
 import { authApi } from "@/api-client";
-import { LoginPayload, UserProfile } from "@/models";
 import { STORAGE_KEY, jsonParse } from "@/utils/contants";
 import useSWR, { SWRConfiguration } from "swr";
 import { useLocalStorage } from "./useLocalStorage";
@@ -11,10 +10,10 @@ export function useAuth(options?: Partial<SWRConfiguration>) {
     data: profile,
     error,
     mutate,
-  } = useSWR<UserProfile | null>("/profile", {
+  } = useSWR<Auth.UserProfile | null>("/profile", {
     dedupingInterval: 60 * 60 * 1000, //1h
     revalidateOnFocus: false,
-    fallbackData: jsonParse<UserProfile>(getItem(STORAGE_KEY.USER_INFO)),
+    fallbackData: jsonParse<Auth.UserProfile>(getItem(STORAGE_KEY.USER_INFO)),
     ...options,
     onSuccess(data: any) {
       // save info to localStorage
@@ -28,7 +27,7 @@ export function useAuth(options?: Partial<SWRConfiguration>) {
 
   const firstLoading = profile === undefined && error === undefined;
 
-  const login = async (payload: LoginPayload) => {
+  const login = async (payload: Auth.LoginPayload) => {
     await authApi.login({
       username: payload.username,
       password: payload.password,
