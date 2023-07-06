@@ -93,5 +93,29 @@ export const theme = createTheme({
         },
       ],
     },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          paddingInline: 2,
+          color: "white",
+          fontWeight: "bold",
+          fontSize: 16,
+          backgroundColor: "#142850",
+        },
+      },
+      variants: [
+        {
+          props: {
+            color: "secondary",
+          },
+          style: {
+            // color: "white",
+            // fontWeight: "bold",
+            // fontSize: 16,
+            // backgroundColor: "#142850",
+          },
+        },
+      ],
+    },
   },
 });

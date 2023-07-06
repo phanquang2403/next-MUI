@@ -1,4 +1,4 @@
-declare namespace WorkApi {
+declare namespace WorkType {
   interface Work {
     id: string;
     title: string;

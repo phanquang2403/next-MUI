@@ -11,7 +11,7 @@ export function useWorkList({ params, options }: UseWorkListProps) {
     [QUERY_KEYS.WORK_LIST, params], // 1 trong những key trong array thay đổi thì gọi lại API update data
     () => workApi.getAll(params),
     {
-      dedupingInterval: 30 * 1000, // thời dan gọi lại API 30s,
+      dedupingInterval: 30 * 1000, // thời dan gọi lại API 30s, dù thay đổi _page thì sẽ cache data  đó trong vòng 30s
       keepPreviousData: true, // giữ lại data trước đó trong quá trình thay đổi key
       fallbackData: {
         // giá trị ban đầu trước khi fetch data
