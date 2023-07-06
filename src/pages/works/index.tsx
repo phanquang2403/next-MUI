@@ -54,15 +54,8 @@ const WorksPage = (props: Props) => {
           </Typography>
         </Box>
 
-        {isLoading ? (
-          <LinearProgress
-            sx={{
-              marginBottom: 2,
-            }}
-          />
-        ) : (
-          <WorkList workList={wordList?.data || []} />
-        )}
+        <WorkList workList={wordList?.data || []} loading={isLoading} />
+
         <Box>
           <Button variant="contained" onClick={handlePrevClick}>
             Next page
