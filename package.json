@@ -27,6 +27,7 @@
     "eslint-config-next": "13.4.7",
     "gray-matter": "^4.0.3",
     "http-proxy": "^1.18.1",
+    "lodash": "^4.17.21",
     "next": "13.4.7",
     "postcss": "8.4.24",
     "react": "18.2.0",
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@types/cookie": "^0.5.1",
     "@types/cookies": "^0.7.7",
-    "@types/http-proxy": "^1.17.11"
+    "@types/http-proxy": "^1.17.11",
+    "@types/lodash": "^4.14.195"
   }
 }

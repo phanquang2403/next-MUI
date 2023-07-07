@@ -1,15 +1,16 @@
-import Link from "next/link";
+import { useAuth } from "@/hooks";
 import {
   Box,
   Container,
-  Stack,
   Link as MuiLink,
+  Stack,
   Typography,
 } from "@mui/material";
-import { useRouter } from "next/router";
 import clsx from "clsx";
-import { useAuth } from "@/hooks";
-import { useEffect, useMemo, useState } from "react";
+import { isEmpty } from "lodash";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useMemo } from "react";
 import { ROUTES } from "../contants/routes";
 export function HeaderDesktop() {
   const router = useRouter();
@@ -21,6 +22,10 @@ export function HeaderDesktop() {
     () => ROUTES.filter((item) => !item.isRequired || isLogger),
     [isLogger]
   );
+
+  if (isEmpty(profile)) {
+    router.push("/");
+  }
 
   return (
     <Box
