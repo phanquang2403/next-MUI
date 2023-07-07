@@ -1,12 +1,12 @@
 import { Box, TextField, TextFieldProps } from "@mui/material";
 import { ChangeEvent } from "react";
-import { Control, useController } from "react-hook-form";
+import { Control, FieldValues, Path, useController } from "react-hook-form";
 
-export type InputFieldProps = TextFieldProps & {
-  name: string;
+export type InputFieldProps<T extends FieldValues> = TextFieldProps & {
+  name: Path<T>;
   control?: Control<any>;
 };
-export function InputField({
+export function InputField<T extends FieldValues>({
   name,
   control,
   onChange: externalOnChange, // để ngăn chặn sự overwrite thuộc tính onChange
@@ -14,7 +14,7 @@ export function InputField({
   ref: externalRef, // để ngăn chặn sự overwrite thuộc tính ref
   value: externalValue, // để ngăn chặn sự overwrite thuộc tính value
   ...props
-}: InputFieldProps) {
+}: InputFieldProps<T>) {
   const {
     field: { onChange, onBlur, value, ref },
     fieldState: { error },

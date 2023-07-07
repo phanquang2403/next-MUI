@@ -12,5 +12,7 @@ declare namespace WorkType {
 
   interface WorkFiltersPayload {
     search: string;
+    tagList_search: string;
+    selectedTagList?: string[]; //template value to store  autocomplete value,not send API
   }
 }
