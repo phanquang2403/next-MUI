@@ -1,5 +1,5 @@
 import { Mainlayout } from "@/components/layouts";
-import { WorkList } from "@/components/work";
+import { WorkFilters, WorkList } from "@/components/work";
 import { useWorkList } from "@/hooks";
 import { Box, Container, Pagination, Stack, Typography } from "@mui/material";
 import React, { useMemo, useState } from "react";
@@ -32,6 +32,14 @@ const WorksPage = (props: Props) => {
     }));
   };
 
+  const handleFilterChange = (newFilters: WorkType.WorkFiltersPayload) => {
+    setFilter((prev) => ({
+      ...prev,
+      _page: 1,
+      title_like: newFilters.search,
+    }));
+  };
+
   return (
     <Box>
       <Container>
@@ -46,6 +54,7 @@ const WorksPage = (props: Props) => {
           </Typography>
         </Box>
 
+        <WorkFilters onSubmit={handleFilterChange} />
         <WorkList workList={wordList?.data || []} loading={isLoading} />
 
         {totalPages > 0 && (

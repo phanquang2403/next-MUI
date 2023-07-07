@@ -9,4 +9,8 @@ declare namespace WorkType {
     fullDescription: string;
     shortDescription: string;
   }
+
+  interface WorkFiltersPayload {
+    search: string;
+  }
 }
