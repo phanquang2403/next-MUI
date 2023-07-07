@@ -5,13 +5,14 @@ import { ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 
 interface WorkFiltersProps {
+  initalValue: string;
   onSubmit?: (payload: WorkType.WorkFiltersPayload) => void;
 }
 
-export function WorkFilters({ onSubmit }: WorkFiltersProps) {
+export function WorkFilters({ initalValue, onSubmit }: WorkFiltersProps) {
   const { control, handleSubmit } = useForm<WorkType.WorkFiltersPayload>({
     defaultValues: {
-      search: "",
+      search: initalValue ? initalValue : "",
     },
   });
 

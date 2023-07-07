@@ -2,18 +2,30 @@ import { Mainlayout } from "@/components/layouts";
 import { WorkFilters, WorkList } from "@/components/work";
 import { useWorkList } from "@/hooks";
 import { Box, Container, Pagination, Stack, Typography } from "@mui/material";
+import { useRouter } from "next/router";
 import React, { useMemo, useState } from "react";
 
 type Props = {};
 
 const WorksPage = (props: Props) => {
-  const [filter, setFilter] = useState<Partial<API.IListParams>>({
+  const router = useRouter();
+
+  const filters: Partial<API.IListParams> = {
     _page: 1,
     _limit: 10,
-  });
+
+    ...router.query,
+  };
+
+  // const [filter, setFilter] = useState<Partial<API.IListParams>>({
+  //   _page: 1,
+  //   _limit: 10,
+  // });
 
   const { data: wordList, isLoading } = useWorkList({
-    params: filter,
+    // params: filter,
+    params: filters,
+    enabled: router.isReady,
     options: {},
   });
 
@@ -26,18 +38,47 @@ const WorksPage = (props: Props) => {
     e: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    setFilter((prev) => ({
-      ...prev,
-      _page: value,
-    }));
+    // setFilter((prev) => ({
+    //   ...prev,
+    //   _page: value,
+    // }));
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query: {
+          ...filters,
+          _page: value,
+        },
+      },
+      undefined,
+      {
+        shallow: true, // tricker render bên client
+      }
+    );
   };
 
   const handleFilterChange = (newFilters: WorkType.WorkFiltersPayload) => {
-    setFilter((prev) => ({
-      ...prev,
-      _page: 1,
-      title_like: newFilters.search,
-    }));
+    // setFilter((prev) => ({
+    //   ...prev,
+    //   _page: 1,
+    //   title_like: newFilters.search,
+    // }));
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query: {
+          ...filters,
+          _page: 1,
+          title_like: newFilters.search,
+        },
+      },
+      undefined,
+      {
+        shallow: true, // tricker render bên client
+      }
+    );
   };
 
   return (
@@ -54,7 +95,10 @@ const WorksPage = (props: Props) => {
           </Typography>
         </Box>
 
-        <WorkFilters onSubmit={handleFilterChange} />
+        <WorkFilters
+          initalValue={"praesentium"}
+          onSubmit={handleFilterChange}
+        />
         <WorkList workList={wordList?.data || []} loading={isLoading} />
 
         {totalPages > 0 && (

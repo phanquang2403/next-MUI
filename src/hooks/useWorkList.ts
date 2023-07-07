@@ -5,10 +5,11 @@ import useSWR, { SWRConfiguration } from "swr";
 export interface UseWorkListProps {
   params: Partial<API.IListParams>;
   options: SWRConfiguration;
+  enabled?: boolean;
 }
-export function useWorkList({ params, options }: UseWorkListProps) {
+export function useWorkList({ params, options, enabled }: UseWorkListProps) {
   const swrResponse = useSWR(
-    [QUERY_KEYS.WORK_LIST, params], // 1 trong những key trong array thay đổi thì gọi lại API update data
+    enabled ? [QUERY_KEYS.WORK_LIST, params] : null, // 1 trong những key trong array thay đổi thì gọi lại API update data
     () => workApi.getAll(params),
     {
       dedupingInterval: 30 * 1000, // thời dan gọi lại API 30s, dù thay đổi _page thì sẽ cache data  đó trong vòng 30s
