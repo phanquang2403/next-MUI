@@ -1,7 +1,14 @@
 import { Mainlayout } from "@/components/layouts";
 import { WorkFilters, WorkList } from "@/components/work";
 import { useWorkList } from "@/hooks";
-import { Box, Container, Pagination, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Pagination,
+  Skeleton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useMemo, useState } from "react";
 
@@ -95,11 +102,22 @@ const WorksPage = (props: Props) => {
           </Typography>
         </Box>
 
-        <WorkFilters
-          initalValue={"praesentium"}
-          onSubmit={handleFilterChange}
+        {router.isReady ? (
+          <WorkFilters
+            initalValue={"praesentium"}
+            onSubmit={handleFilterChange}
+          />
+        ) : (
+          <Skeleton
+            variant="rectangular"
+            height={40}
+            sx={{ display: "inline-block", mt: 2, mb: 1, width: "100%" }}
+          />
+        )}
+        <WorkList
+          workList={wordList?.data || []}
+          loading={!router.isReady || isLoading}
         />
-        <WorkList workList={wordList?.data || []} loading={isLoading} />
 
         {totalPages > 0 && (
           <Stack alignItems={"center"}>
