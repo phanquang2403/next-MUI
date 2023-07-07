@@ -1,17 +1,8 @@
-import { workApi } from "@/api-client";
 import { Mainlayout } from "@/components/layouts";
 import { WorkList } from "@/components/work";
 import { useWorkList } from "@/hooks";
-import { getErrorMessage } from "@/utils";
-import {
-  Box,
-  Button,
-  Container,
-  LinearProgress,
-  Typography,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { Box, Container, Pagination, Stack, Typography } from "@mui/material";
+import React, { useMemo, useState } from "react";
 
 type Props = {};
 
@@ -26,17 +17,18 @@ const WorksPage = (props: Props) => {
     options: {},
   });
 
-  const handlePrevClick = () => {
-    setFilter((prev) => ({
-      ...prev,
-      _page: (prev?._page || 0) - 1,
-    }));
-  };
+  const { _limit, _totalRows, _page } = wordList?.pagination || 0;
+  const totalPages = useMemo(() => {
+    return Boolean(_totalRows) ? Math.ceil(_totalRows / _limit) : 0;
+  }, [_limit, _totalRows]);
 
-  const handleNextClick = () => {
+  const handleChangePagination = (
+    e: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
     setFilter((prev) => ({
       ...prev,
-      _page: (prev?._page || 0) + 1,
+      _page: value,
     }));
   };
 
@@ -56,14 +48,16 @@ const WorksPage = (props: Props) => {
 
         <WorkList workList={wordList?.data || []} loading={isLoading} />
 
-        <Box>
-          <Button variant="contained" onClick={handlePrevClick}>
-            Next page
-          </Button>
-          <Button variant="contained" onClick={handleNextClick}>
-            Next page
-          </Button>
-        </Box>
+        {totalPages > 0 && (
+          <Stack alignItems={"center"}>
+            <Pagination
+              page={_page}
+              count={totalPages}
+              color="primary"
+              onChange={handleChangePagination}
+            />
+          </Stack>
+        )}
       </Container>
     </Box>
   );
